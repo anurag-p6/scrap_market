@@ -53,6 +53,13 @@ module scrap_mart_addr::scrap_mart {
         let mart = borrow_global_mut<ScrapMart>(mart_addr);
         vector::push_back(&mut mart.buyers, Buyer { addr, name });
     }
+
+    /// List all scraps
+    public fun list_scraps(owner: &signer): vector<Scrap> acquires ScrapMart {
+        let addr = signer::address_of(owner);
+        let mart = borrow_global<ScrapMart>(addr);
+        mart.scraps
+    }
 }
 
 
