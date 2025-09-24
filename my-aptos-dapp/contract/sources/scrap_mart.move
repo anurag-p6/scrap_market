@@ -11,6 +11,12 @@ module scrap_mart_addr::scrap_mart {
         price: u64,
     }
 
+    /// A buyer
+    struct Buyer has copy, drop, store {
+        addr: address,
+        name: string::String,
+    }
+
 
 }
 
