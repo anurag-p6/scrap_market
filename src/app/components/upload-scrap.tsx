@@ -4,7 +4,7 @@ import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import { useState } from "react";
 import { AptosClient } from "aptos";
 import { CameraCapture } from "./camera-capture";
-import { uploadToIPFS } from "@/lib/ipfs";
+import { uploadToPinata } from "../../lib/pinata";
 
 const client = new AptosClient("https://fullnode.testnet.aptoslabs.com");
 
@@ -22,7 +22,7 @@ export function UploadScrap() {
   const handleImageCapture = async (imageBlob: Blob) => {
     setLoading(true);
     try {
-      const ipfsUrl = await uploadToIPFS(imageBlob);
+      const ipfsUrl = await uploadToPinata(imageBlob:string);
       setFormData((prev) => ({ ...prev, imageUrl: ipfsUrl }));
       setImagePreview(URL.createObjectURL(imageBlob));
     } catch (error) {
