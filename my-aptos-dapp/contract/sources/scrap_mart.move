@@ -60,6 +60,13 @@ module scrap_mart_addr::scrap_mart {
         let mart = borrow_global<ScrapMart>(addr);
         mart.scraps
     }
+
+    /// List all buyers
+    public fun list_buyers(owner: &signer): vector<Buyer> acquires ScrapMart {
+        let addr = signer::address_of(owner);
+        let mart = borrow_global<ScrapMart>(addr);
+        mart.buyers
+    }
 }
 
 
