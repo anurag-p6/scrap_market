@@ -1,8 +1,9 @@
 module scrap_mart_addr::scrap_mart {
 
+    use std::option;
     use std::signer;
     use std::vector;
-    use std::string; // ✅ import string module
+    use std::string; 
 
     /// A scrap item
     struct Scrap has copy, drop, store {
@@ -67,6 +68,24 @@ module scrap_mart_addr::scrap_mart {
         let mart = borrow_global<ScrapMart>(addr);
         mart.buyers
     }
+
+
+    /// Fetch a scrap by ID (returns Option<Scrap>)
+    public fun get_scrap_by_id(owner: &signer, id: u64): option::Option<Scrap> acquires ScrapMart {
+        let addr = signer::address_of(owner);
+        let mart = borrow_global<ScrapMart>(addr);
+        let len = vector::length(&mart.scraps);
+        let mut_index = 0;
+        while (mut_index < len) {
+            let scrap_ref = vector::borrow(&mart.scraps, mut_index);
+            if (scrap_ref.id == id) {
+                return option::some(*scrap_ref);
+            };
+            mut_index = mut_index + 1;
+        };
+        option::none<Scrap>()
+    }
+
 }
 
 
