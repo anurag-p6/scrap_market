@@ -17,6 +17,12 @@ module scrap_mart_addr::scrap_mart {
         name: string::String,
     }
 
+    /// Resource to hold all scrap and buyers
+    struct ScrapMart has key {
+        scraps: vector<Scrap>,
+        buyers: vector<Buyer>,
+    }
+
 
 }
 
