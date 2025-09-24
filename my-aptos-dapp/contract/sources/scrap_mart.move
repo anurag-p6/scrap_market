@@ -42,6 +42,17 @@ module scrap_mart_addr::scrap_mart {
         let mart = borrow_global_mut<ScrapMart>(addr); // ✅ no module prefix
         vector::push_back(&mut mart.scraps, Scrap { id, name, price });
     }
+
+    /// Add a buyer
+    public entry fun add_buyer(
+        owner: &signer,
+        addr: address,
+        name: string::String
+    ) acquires ScrapMart {
+        let mart_addr = signer::address_of(owner);
+        let mart = borrow_global_mut<ScrapMart>(mart_addr);
+        vector::push_back(&mut mart.buyers, Buyer { addr, name });
+    }
 }
 
 
