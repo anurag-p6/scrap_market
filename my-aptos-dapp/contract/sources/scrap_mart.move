@@ -91,8 +91,19 @@ module scrap_mart_addr::scrap_mart {
         abort 1; // scrap not found
     }
 
+    /// List all scraps for a seller
+    public fun list_scraps(seller: &signer): vector<Scrap> acquires ScrapMart {
+        let addr = signer::address_of(seller);
+        let mart = borrow_global<ScrapMart>(addr);
+        mart.scraps
+    }
 
-
+    /// List scraps owned by a buyer
+    public fun list_owned(buyer: &signer): vector<Scrap> acquires OwnedScraps {
+        let addr = signer::address_of(buyer);
+        let owned = borrow_global<OwnedScraps>(addr);
+        owned.scraps
+    }
 }
 
 
