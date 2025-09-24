@@ -1,6 +1,5 @@
 module scrap_mart_addr::scrap_mart {
 
-    use std::option;
     use std::signer;
     use std::vector;
     use std::string; 
