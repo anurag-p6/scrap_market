@@ -23,7 +23,13 @@ module scrap_mart_addr::scrap_mart {
         buyers: vector<Buyer>,
     }
 
-
+    /// Initialize the ScrapMart resource under the deployer
+    public entry fun init(owner: &signer) {
+        move_to(owner, ScrapMart {
+            scraps: vector::empty<Scrap>(),
+            buyers: vector::empty<Buyer>(),
+        });
+    }
 }
 
 
