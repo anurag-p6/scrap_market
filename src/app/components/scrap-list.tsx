@@ -80,16 +80,6 @@ export function ScrapList({ ownerAddress }: ScrapListProps) {
     );
   }
 
-  if (!account) {
-    return (
-      <div className="text-center p-4 bg-yellow-50 rounded-lg">
-        <p className="text-yellow-700">
-          Please connect your wallet to view scraps
-        </p>
-      </div>
-    );
-  }
-
   if (scraps.length === 0) {
     return (
       <div className="text-center p-8 bg-gray-50 rounded-lg">
